@@ -47,7 +47,7 @@ public class GestionMascotas {
                 m.mostrarInfo();
                 System.out.println("Sonido: " + m.hacerSonido());
                 encontrada = true;
-                break;
+                
             }
         }
         if (!encontrada) {
