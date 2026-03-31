@@ -10,7 +10,7 @@ public class Main {
             //hacemos el menu
             try {
                 System.out.println("***** GESTIÓN DE MASCOTAS ****");
-                System.out.println("1. Crear Mascota (Perro/Gato)");
+                System.out.println("1. Crear Mascota (Perro/Gato/Ave)");
                 System.out.println("2. Mostrar Todas las Mascotas");
                 System.out.println("3. Ejecutar sonido de una mascota (por ID)");
                 System.out.println("4. Buscar mascota por nombre");
@@ -21,24 +21,35 @@ public class Main {
 
                 switch (opcion) {
                     case 1:
-                        System.out.print("Ingrese ID (int): ");
+                        try {
+                            System.out.print("ID: ");
                         int id = Integer.parseInt(leer.nextLine());
-                        System.out.print("Ingrese Nombre: ");
+                            System.out.print("Nombre: ");
                         String nombre = leer.nextLine();
-                        System.out.print("Ingrese Edad (int): ");
+                            System.out.print("Edad: ");
                         int edad = Integer.parseInt(leer.nextLine());
 
-                    
                         if (id <= 0 || nombre.trim().isEmpty() || edad < 0) {
                             System.out.println("!ERROR!: Datos no válidos. ID debe ser > 0, nombre no vacío y edad >= 0.");
-                        } else {
-                            System.out.print("¿Es Perro (P) , Gato (G)? , Ave *(A): ");
-                            String tipo = leer.nextLine();
-                            if (tipo.equalsIgnoreCase("P")) {
-                                gestion.agregarMascota(new Perro(id, nombre, edad));
-                            } else {
-                                gestion.agregarMascota(new Gato(id, nombre, edad));
+                        } 
+                        else {
+                            System.out.print("¿Es Perro (P), Gato (G), Ave (A)?: ");
+                        String tipo = leer.nextLine(); 
+                        if (tipo.equalsIgnoreCase("P")) {
+                            gestion.agregarMascota(new Perro(id, nombre, edad));
+                        } 
+                        else if (tipo.equalsIgnoreCase("G")) {
+                            gestion.agregarMascota(new Gato(id, nombre, edad));
+                        } 
+                        else if (tipo.equalsIgnoreCase("A")) {
+                            gestion.agregarMascota(new Ave(id, nombre, edad));
+                        } 
+                        else {
+                             System.out.println("Opción de mascota no válida. No se realizó el registro.");
+                        }
                             }
+                        } catch (NumberFormatException e) {
+                            System.out.println("!ERROR!: Ingrese números válidos para ID y Edad.");
                         }
                         break;
 
